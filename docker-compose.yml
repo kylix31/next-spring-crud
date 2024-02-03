@@ -1,0 +1,51 @@
+version: "3.7"
+services:
+  frontend:
+    container_name: crud-front
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        ENV_VARIABLE: ${ENV_VARIABLE}
+        NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+    environment:
+      - NEXT_PUBLIC_API_BASE=http://backend:8080
+      - API_BASE=http://backend:8080
+
+  backend:
+    container_name: crud-back
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/server_db
+      SPRING_DATASOURCE_USERNAME: server
+      SPRING_DATASOURCE_PASSWORD: server
+    restart: on-failure
+
+  mysql:
+    container_name: crud-db
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: server_db
+      MYSQL_USER: server
+      MYSQL_PASSWORD: server
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
