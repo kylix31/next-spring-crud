@@ -2,15 +2,6 @@
 
 This is a sample project that demonstrates how to build a full-stack web application using Next.js, SWR, Tailwind, Spring Boot, MySQL, Docker, Docker Compose and Radix-UI.
 
-<p align="center" style="display: flex; justify-content: center; gap: 10px; height: 75px"> 
-    <img src="img/spring.png" style="border-radius: 30px;">
-    <img src="img/nextjs.png" style="border-radius: 30px;">
-    <img src="img/tailwind.png" style="border-radius: 30px;">
-    <img src="img/swr.png" style="border-radius: 30px;">
-    <img src="img/docker.png" style="border-radius: 30px;">
-    <img src="img/radix.png" style="border-radius: 30px;">
-</p>
-
 ## Getting Started :computer:
 
 To get started with this project, you'll need to have Docker and Docker Compose installed on your machine. Once you have those installed, you can run the following command to start the application:
